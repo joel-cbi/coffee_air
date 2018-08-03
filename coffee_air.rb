@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sinatra/contrib'
 require 'httparty'
 require 'json'
 require_relative 'weather'
@@ -15,5 +14,5 @@ class CoffeeAir < Sinatra::Base
     @result = {'coffee'=> @coffee, 'air'=> @weather, 'weather_score'=> @score}
     @result.to_json
   end
-  
+
 end
