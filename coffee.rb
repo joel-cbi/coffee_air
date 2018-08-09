@@ -11,10 +11,16 @@ class Coffee
   end
 
   def self.parse_response(response)
+    coffee_shop = {}
+    if response.length == 0
+      coffee_shop['name'] = 'Google API rate limit enforced'
+      coffee_shop['vicinity'] = 'Really uncool, Google'
+      coffee_shop['rating'] = 0
+      return coffee_shop
+    end
     highly_rated_shops = response.select { |shop| shop['rating'] > 3.5 }
     random_index = Random.rand(highly_rated_shops.length)
     coffee_shop_data = highly_rated_shops[random_index]
-    coffee_shop = {}
     coffee_shop['name'] = coffee_shop_data['name']
     coffee_shop['vicinity'] = coffee_shop_data['vicinity']
     coffee_shop['rating'] = coffee_shop_data['rating']
